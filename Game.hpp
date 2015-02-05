@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Player.hpp"
+#include "GameStateMachine.hpp"
 
 class Game
 {
@@ -19,7 +19,7 @@ class Game
     sf::RenderWindow mWindow;
     const mTimePerFrame;
     
-    Player mPlayer;
+    GameStateMachine* mpGameStateMachine;
 };
 
 #endif

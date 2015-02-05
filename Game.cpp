@@ -1,16 +1,11 @@
 #include "Game.hpp"
 
-Game::Game() : mWindow(sf::VideoMode(640, 480), "SFML Application"), 
-               mPlayer(), mTexture(), 
+Game::Game() : mWindow(sf::VideoMode(640, 480), "SFML Game"), 
+               mIsPaused(false), 
                mTimePerFrame(sf::seconds(1.f / 60.f))
 {
-  if(!mTexture.loadFromFile("Data/Images/Eagle.png"))
-  {
-    // Handle loading error
-  }
-  
-  mPlayer.setTexture(mTexture);
-  mPlayer.setPosition(100.f, 100.f);
+  //Create a new state machine
+  mpGameStateMachine = new GameStateMachine();
 }
 
 void Game::Run()
@@ -37,7 +32,7 @@ void Game::ProcessEvents()
   sf::Event event;
   while(mWindow.pollEvent(event))
   {
-    mPlayer.ProcessEvents(event);
+    mpGameStateMachine.ProcessEvents(event);
     
     switch(event.type())
     {
@@ -50,31 +45,12 @@ void Game::ProcessEvents()
 
 void Game::Update(sf::Time deltaTime)
 {
-  sf::Vector2f movement(0.f, 0.f);
-  
-  if(mIsMovingUp)
-  {
-    movement.y -= PlayerSpeed;
-  }
-  if(mIsMovingDown)
-  {
-    movement.y += PlayerSpeed;
-  }
-  if(mIsMovingLeft)
-  {
-    movement.x -= PlayerSpeed;
-  }
-  if(mIsMovingRight)
-  {
-    movement.x += PlayerSpeed;
-  }
-    
-  mPlayer.move(movement * deltaTime.asSeconds());
+  mpGameStateMachine.Update(deltaTime)
 }
 
 void Game::Draw()
 {
   mWindow.clear();
-  mWindow.draw(mPlayer);
+  mpGameStateMachine.Draw();
   mWindow.display();
 }

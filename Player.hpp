@@ -9,6 +9,7 @@ class Player
     Player(int);
     Player(sf::Vector2f);
     
+    void LoadContent();
     void ProcessEvents(const sf::Event&);
     void Update(sf::Time);
     void Draw(sf::RenderWindow);

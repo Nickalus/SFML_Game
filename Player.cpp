@@ -4,8 +4,9 @@ void Player::Player(int speed) : mPlayerSpeed(speed)
 {
 }
 
-void Player::Player(sf::Vector2f position) : mPosition(position), 
-                                             mPlayerSpeed(speed)
+void Player::Player(sf::Vector2f position, int speed) 
+: mPosition(position), 
+  mPlayerSpeed(speed)
 {
 }
 
