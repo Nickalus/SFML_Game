@@ -1,30 +1,29 @@
 #include "Game.hpp"
 
-Game::Game() : mWindow(sf::VideoMode(640, 480), "SFML Game"), 
-               mIsPaused(false), 
+Game::Game() : mWindow(sf::VideoMode(640, 480), "SFML Game"),
+               mIsPaused(false),
                mTimePerFrame(sf::seconds(1.f / 60.f))
 {
-  //Create a new state machine
-  mpGameStateMachine = new GameStateMachine();
 }
 
 void Game::Run()
 {
   sf::Clock clock;
-  
   sf::Time timeSinceLastUpdate = sf::Time::Zero;
-  
+
   while(mWindow.isOpen())
   {
-    ProcessEvents();
     timeSinceLastUpdate += clock.restart();
+
     while(timeSinceLastUpdate > mTimePerFrame)
     {
       timeSinceLastUpdate -= mTimePerFrame;
-      processEvents();
+      ProcessEvents();
       Update(mTimePerFrame);
     }
-    Draw();
+
+    Draw(mWindow);
+  }
 }
 
 void Game::ProcessEvents()
@@ -32,25 +31,26 @@ void Game::ProcessEvents()
   sf::Event event;
   while(mWindow.pollEvent(event))
   {
-    mpGameStateMachine.ProcessEvents(event);
-    
-    switch(event.type())
+    switch(event.type)
     {
       case sf::Event::Closed:
         mWindow.close();
       break;
+    default:
+      break;
     }
+    GameStateManager::Instance()->ProcessEvents(event);
   }
 }
 
 void Game::Update(sf::Time deltaTime)
 {
-  mpGameStateMachine.Update(deltaTime)
+  GameStateManager::Instance()->Update(deltaTime);
 }
 
-void Game::Draw()
+void Game::Draw(sf::RenderWindow& window)
 {
   mWindow.clear();
-  mpGameStateMachine.Draw();
+  GameStateManager::Instance()->Draw(window);
   mWindow.display();
 }
