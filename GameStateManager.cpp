@@ -4,7 +4,7 @@
 // Global static pointer used to ensure a single instance of the class.
 GameStateManager* GameStateManager::mpInstance = nullptr;
 
-//To access the singleton. This class is a singleton to avoid passing it around
+//This class is a singleton to avoid passing it around
 GameStateManager* GameStateManager::Instance()
 {
   if(!mpInstance)   //Only allow one instance of class to be generated.
@@ -60,10 +60,8 @@ void GameStateManager::ChangeState(State* pState)
     {
       return;
     }
-
     this->Pop();
   }
-
   this->Push(pState);
 }
 

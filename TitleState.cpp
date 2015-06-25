@@ -27,13 +27,11 @@ bool TitleState::OnExit()
 
 void TitleState::ProcessEvents(const sf::Event& event)
 {
-  switch (event.type)
+  switch(event.type)
   {
-    case sf::Event::KeyPressed:
-      if(event.key.code == sf::Keyboard::P)
-      {
-        mChangingState = true;
-      }
+    case sf::Event::KeyReleased:
+    case sf::Event::MouseButtonReleased:
+      mChangingState = true;
     break;
     default:
     break;
@@ -44,44 +42,44 @@ void TitleState::Update(sf::Time dt)
 {
   if(mChangingState)
   {
-    mFade -= 5 * dt.asSeconds();
-    mText.setColor(sf::Color(255, 255, 255, mFade));
+    mFade -= 10 * dt.asSeconds();
+    //mText.setColor(sf::Color(255, 255, 255, mFade));
     if(mFade <= 0)
     {
-      GameStateManager::Instance()->Push(new PlayState);
+      GameStateManager::Instance()->ChangeState(new PlayState);
     }
   }
+  this->mSceneGraph.Update(dt);
 }
 
 void TitleState::Draw(sf::RenderWindow& window)
 {
-  window.draw(mText);
-}
-
-void TitleState::ChangeState(State* pState)
-{
-  for(int i = 255; i >= 0; i -= 5)
-  {
-    mText.setColor(sf::Color(255, 255, 255, i));
-  }
-
-  GameStateManager::Instance()->Push(new PlayState);
+  window.draw(mSceneGraph);
 }
 
 bool TitleState::ParseState()
 {
-  if(!mFont.loadFromFile("Data/Fonts/kenpixel_future_square.ttf"))
-  {
-    std::cout << "Could not load font" << std::endl;
-    return false;
-  }
-
-
   return true;
 }
 
 bool TitleState::BuildState()
 {
+  //Add text to scene
+  if(!mFont.loadFromFile("Data/Fonts/kenpixel_future_square.ttf"))
+  {
+    std::cout << "Could not load font" << std::endl;
+    return false;
+  }
+  sf::Text mText;
   mText.setFont(mFont);
+  mText.setColor(sf::Color::Red);
   mText.setString("Title Screen");
+
+  //Add the background sprite to the scene
+  sf::Texture BgTexture;
+  if(!BgTexture.loadFromFile("Data/Backgrounds/BG.png"))
+  {
+    std::cout << "Could not load background" << std::endl;
+    return false;
+  }
 }

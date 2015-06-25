@@ -5,8 +5,11 @@
 #include <SFML/Graphics/Text.hpp>
 
 #include <iostream>
+#include <array>
 
 #include "State.hpp"
+#include "SpriteNode.hpp"
+#include "TextNode.hpp"
 
 class TitleState : public State
 {
@@ -21,13 +24,17 @@ class TitleState : public State
     void Update(sf::Time);
     void Draw(sf::RenderWindow&);
   private:
-    void ChangeState(State*);
     bool ParseState();
     bool BuildState();
   private:
-    sf::Text mText;
+    enum Layer
+    {
+      Background,
+      LayerCount
+    };
+  private:
     sf::Font mFont;
-    sf::Sprite mBackgroundSprite;
+    sf::Sprite mBackground;
 
     bool mShowText, mChangingState;
     int mFade;

@@ -1,33 +1,49 @@
+#include <iostream>
+
 #include "AssetMap.hpp"
-#include "DirectoryRange.hpp"
 
+#include <boost/filesystem.hpp>
+#include <boost/range/iterator_range.hpp>
 
-AssetMap::AssetMap()
+namespace bfs = boost::filesystem;
+
+template <class T>
+AssetMap<T>::AssetMap()
 {
 
 }
 
-void AssetMap::LoadContent(const std::string& path, const std::string& ext)
+template <class T>
+void AssetMap<T>::LoadContent(const std::string& path, const std::string& ext)
 {
-  //Create a temp vector for the file entries to go to
-  std::vector<bfs::directory_entry> files;
-
-  //Create the directory
-  bfs::path spriteDir(path);
-
-  spriteDir.make_preferred();
+  //Create the path with boost filesystem
+  bfs::path directory(path);
 
   //Check to see if the directory exists
   if(bfs::exists(path))
   {
-    //Loop through all files in the dir
-    for(auto file : DirectoryRange(spriteDir))
-    {
+    //create the iterators
+    bfs::directory_iterator iterator(directory), end;
 
+    //Loop through all files
+    for(; iterator != end; ++iterator)
+    {
+      //Check the extension of the file
+      if(iterator->path().extension() == ext)
+      {
+        //add to map
+        AddContent(iterator->path().filename());
+      }
     }
   }
   else
   {
-    std::cout << "'./Data/Images/Sprites' Does not exist" << std::endl;
+    std::cout << path << " Does not exist!" << std::endl;
   }
+}
+
+template <class T>
+bool AssetMap<T>::AddContent(const std::string& content)
+{
+  return true;
 }

@@ -8,6 +8,7 @@ enum StateType
   TITLE,
   MENU,
   PLAY,
+  PAUSED,
   GAMEOVER
 };
 

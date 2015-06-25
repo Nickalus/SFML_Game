@@ -1,4 +1,4 @@
-#include "scenenode.hpp"
+#include "SceneNode.hpp"
 
 #include <algorithm>
 #include <cassert>
@@ -28,8 +28,8 @@ SceneNode::Ptr SceneNode::DetachChild(const SceneNode& node)
 
 void SceneNode::Update(sf::Time dt)
 {
-  updateCurrent(dt);
-  updateChildren(dt);
+  UpdateCurrent(dt);
+  UpdateChildren(dt);
 }
 
 void SceneNode::UpdateCurrent(sf::Time)
@@ -40,7 +40,7 @@ void SceneNode::UpdateCurrent(sf::Time)
 void SceneNode::UpdateChildren(sf::Time dt)
 {
   for(Ptr& child : mChildren)
-    child->update(dt);
+    child->Update(dt);
 }
 
 void SceneNode::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -49,8 +49,8 @@ void SceneNode::draw(sf::RenderTarget& target, sf::RenderStates states) const
   states.transform *= getTransform();
 
   //Draw node and children with changed transform
-  drawCurrent(target, states);
-  drawChildren(target, states);
+  DrawCurrent(target, states);
+  DrawChildren(target, states);
 }
 
 void SceneNode::DrawCurrent(sf::RenderTarget&, sf::RenderStates) const

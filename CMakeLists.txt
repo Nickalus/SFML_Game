@@ -41,6 +41,12 @@ SET(Game_sources
     GameStateManager.cpp
     TitleState.cpp
     PlayState.cpp
+    SceneNode.cpp
+    SpriteNode.cpp
+    TextNode.cpp
+    AssetManager.cpp
+    AssetMap.cpp
+    DirectoryRange.cpp
    )
 
 SET(Game_Headers
@@ -49,6 +55,12 @@ SET(Game_Headers
     GameStateManager.hpp
     TitleState.hpp
     PlayState.hpp
+    SceneNode.hpp
+    SpriteNode.hpp
+    TextNode.hpp
+    AssetManager.hpp
+    AssetMap.hpp
+    DirectoryRange.hpp
    )
 
 Include_Directories(${Game_Include_Dir})
