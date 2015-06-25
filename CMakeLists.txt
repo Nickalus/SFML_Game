@@ -12,7 +12,7 @@ Set(Game_Definitions )
 
 #Where to find stuff
 If(UNIX)
-  Set(Boost_Dir /usr/local/boost-1.55.0)
+  Set(Boost_Dir /usr/local/)
   Set(SFML_Dir /usr/local/)
 Elseif(WIN32)
   Set(Boost_Dir C:/boost-1.55.0)
@@ -21,18 +21,22 @@ Endif()
 
 #SFML
 Set(SFML_Include ${SFML_Dir}/include)
+Set(Boost_Include ${Boost_Dir}/include)
 
 #Game_Include_Dir
-Set(Game_Include_Dir ${SFML_Include})
+Set(Game_Include_Dir ${SFML_Include} ${Boost_Include})
 
 #Libraries
 #SFML
 Set(SFML_Graphics ${SFML_Dir}/lib/SFML-2.2.0/libsfml-graphics.so)
 Set(SFML_Window ${SFML_Dir}/lib/SFML-2.2.0/libsfml-window.so)
 Set(SFML_System ${SFML_Dir}/lib/SFML-2.2.0/libsfml-system.so)
+#Boost
+Set(Boost_Filesystem ${Boost_Dir}/lib/libboost-filesystem.so)
+Set(Boost_System ${Boost_Dir}/lib/libboost-system.so)
 
 #Game_Libraries/usr/local/lib/
-Set(Game_Libraries ${SFML_Graphics} ${SFML_Window} ${SFML_System})
+Set(Game_Libraries ${SFML_Graphics} ${SFML_Window} ${SFML_System} ${Boost_Filesystem} ${Boost_System})
 
 # Sources
 SET(Game_sources
@@ -46,7 +50,6 @@ SET(Game_sources
     TextNode.cpp
     AssetManager.cpp
     AssetMap.cpp
-    DirectoryRange.cpp
    )
 
 SET(Game_Headers
@@ -60,7 +63,6 @@ SET(Game_Headers
     TextNode.hpp
     AssetManager.hpp
     AssetMap.hpp
-    DirectoryRange.hpp
    )
 
 Include_Directories(${Game_Include_Dir})
