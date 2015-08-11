@@ -14,10 +14,10 @@ AssetManager* AssetManager::Instance()
 
 void AssetManager::LoadContent()
 {
-  mTextureMap.LoadContent("Data/Images/Sprites", ".png");
+  mTextureMap.LoadContent("Data/Sprites", ".png");
 }
 
-const sf::Texture& AssetManager::GetTexture(int pos)
+sf::Texture& AssetManager::GetTexture(int pos)
 {
-  return mTextureMap.Get(pos);
+  return mTextureMap[pos];
 }

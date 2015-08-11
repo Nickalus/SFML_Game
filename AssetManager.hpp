@@ -19,7 +19,7 @@ class AssetManager
     void LoadContent();
 
     //Getter functions
-    const sf::Texture&GetTexture(int);
+    sf::Texture&GetTexture(int);
     sf::Font& GetFont(int);
   private:
   private:

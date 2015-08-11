@@ -1,9 +1,9 @@
 #include <iostream>
 
-#include "AssetMap.hpp"
-
 #include <boost/filesystem.hpp>
 #include <boost/range/iterator_range.hpp>
+
+#include "AssetMap.hpp"
 
 namespace bfs = boost::filesystem;
 
@@ -32,7 +32,7 @@ void AssetMap<T>::LoadContent(const std::string& path, const std::string& ext)
       if(iterator->path().extension() == ext)
       {
         //add to map
-        AddContent(iterator->path().filename());
+        AddContent(iterator->path().filename().string());
       }
     }
   }

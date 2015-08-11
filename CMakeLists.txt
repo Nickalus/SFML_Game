@@ -21,7 +21,7 @@ Endif()
 
 #SFML
 Set(SFML_Include ${SFML_Dir}/include)
-Set(Boost_Include ${Boost_Dir}/include)
+Set(Boost_Include /home/nick/Projects/boost_1_58_0/boost)
 
 #Game_Include_Dir
 Set(Game_Include_Dir ${SFML_Include} ${Boost_Include})
@@ -32,40 +32,24 @@ Set(SFML_Graphics ${SFML_Dir}/lib/SFML-2.2.0/libsfml-graphics.so)
 Set(SFML_Window ${SFML_Dir}/lib/SFML-2.2.0/libsfml-window.so)
 Set(SFML_System ${SFML_Dir}/lib/SFML-2.2.0/libsfml-system.so)
 #Boost
-Set(Boost_Filesystem ${Boost_Dir}/lib/libboost-filesystem.so)
-Set(Boost_System ${Boost_Dir}/lib/libboost-system.so)
+Set(Boost_Filesystem /home/nick/Projects/boost_1_58_0/stage/lib/libboost_filesystem.so)
+Set(Boost_System /home/nick/Projects/boost_1_58_0/stage/lib/libboost_system.so)
 
 #Game_Libraries/usr/local/lib/
 Set(Game_Libraries ${SFML_Graphics} ${SFML_Window} ${SFML_System} ${Boost_Filesystem} ${Boost_System})
 
 # Sources
-SET(Game_sources
-    Main.cpp
-    Game.cpp
-    GameStateManager.cpp
-    TitleState.cpp
-    PlayState.cpp
-    SceneNode.cpp
-    SpriteNode.cpp
-    TextNode.cpp
+SET(GAME_SOURCES
+    AssetManagerMain.cpp
     AssetManager.cpp
-    AssetMap.cpp
    )
 
-SET(Game_Headers
-    Game.hpp
-    State.hpp
-    GameStateManager.hpp
-    TitleState.hpp
-    PlayState.hpp
-    SceneNode.hpp
-    SpriteNode.hpp
-    TextNode.hpp
+SET(GAME_HEADERS
     AssetManager.hpp
     AssetMap.hpp
    )
 
 Include_Directories(${Game_Include_Dir})
 Link_Directories(${Game_Library_Dir})
-Add_Executable(${PROJECT_NAME} ${Game_sources} ${Game_Headers})
+Add_Executable(${PROJECT_NAME} ${GAME_SOURCES} ${GAME_HEADERS})
 Target_Link_Libraries(${PROJECT_NAME} ${Game_Libraries})
