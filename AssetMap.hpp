@@ -1,6 +1,8 @@
+#include <map>
 #include <string>
-#include <vector>
 #include <memory>
+#include <stdexcept>
+#include <cassert>
 #include <iostream>
 
 #include <boost/filesystem.hpp>
@@ -10,7 +12,7 @@
 
 namespace bfs = boost::filesystem;
 
-template<typename T>
+template<typename Asset>
 class AssetMap
 {
   public:
@@ -18,27 +20,22 @@ class AssetMap
 
     void LoadContent(const std::string&, const std::string&);
 
-    //Overload the subscript operator
-    T& operator[](int position);
+    //Getter operations
+    Asset& Get(int);
+    const Asset& Get(int) const;
   private: //Member functions
-    void AddContent(boost::filesystem::path);
+    void AddContent(const std::string&, int);
   private:
-    std::map<int, sf::Texture*> mMap;
+    std::map<int, std::unique_ptr<Asset>> mMap;
 };
 
-template <class T>
-AssetMap<T>::AssetMap()
+template <class Asset>
+AssetMap<Asset>::AssetMap()
 {
 }
 
-template <class T>
-T& AssetMap<T>::operator[](int position)
-{
-  return *mMap[position];
-}
-
-template <class T>
-void AssetMap<T>::LoadContent(const std::string& path, const std::string& ext)
+template <class Asset>
+void AssetMap<Asset>::LoadContent(const std::string& path, const std::string& ext)
 {
   //Create the path with boost filesystem
   bfs::path directory(path);
@@ -56,7 +53,8 @@ void AssetMap<T>::LoadContent(const std::string& path, const std::string& ext)
       if(iterator->path().extension() == ext)
       {
         //add to map
-        AddContent(iterator->path());      }
+        AddContent(iterator->path().string(), mMap.size());
+      }
     }
   }
   else
@@ -65,22 +63,21 @@ void AssetMap<T>::LoadContent(const std::string& path, const std::string& ext)
   }
 }
 
-template <class T>
-void AssetMap<T>::AddContent(bfs::path file)
+template <class Asset>
+void AssetMap<Asset>::AddContent(const std::string& file, int ID)
 {
   //Create and load resource
-  sf::Texture* tempTexture = new sf::Texture();
+  std::unique_ptr<Asset> tempAsset(new Asset());
 
-  if(!tempTexture->loadFromFile(file.string()))
-    throw std::runtime_error("Failed to load " + file.string());
+  if(!tempAsset->loadFromFile(file))
+    throw std::runtime_error("Failed to load " + file);
 
-  //std::string srtID = file.stem().string();
+  //Insert
+  mMap[ID] = std::move(tempAsset);
+}
 
-  int id = std::atoi(file.stem().string().c_str());
-
-  //Insert and check success
-
-  mMap[id] = tempTexture;
-  std::cout << "I crashed!" << std::endl;
-  //assert(inserted.second);
+template <class Asset>
+Asset& AssetMap<Asset>::Get(int pos)
+{
+  return *mMap[pos];
 }

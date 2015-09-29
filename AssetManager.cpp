@@ -1,23 +1,18 @@
 #include "AssetManager.hpp"
 
-AssetManager* AssetManager::mInstance = nullptr;
-
-AssetManager* AssetManager::Instance()
+AssetManager& AssetManager::Instance()
 {
-  if(mInstance != nullptr)
-  {
-    mInstance = new AssetManager;
-  }
+  static AssetManager mInstance;
 
   return mInstance;
 }
 
 void AssetManager::LoadContent()
 {
-  mTextureMap.LoadContent("Data/Sprites", ".png");
+  mTextureMap.LoadContent("/home/nick/Projects/SFML_Game/build/Data/Sprites", ".png");
 }
 
 sf::Texture& AssetManager::GetTexture(int pos)
 {
-  return mTextureMap[pos];
+  return mTextureMap.Get(pos);
 }
