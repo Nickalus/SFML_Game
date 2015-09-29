@@ -20,10 +20,6 @@ class AssetMap
 
     void LoadContent(const std::string&, const std::string&);
 
-    //Getter operations
-    Asset& Get(int);
-    const Asset& Get(int) const;
-
     //Overloading subscript operator
     Asset& operator[] (const int);
   private: //Member functions
@@ -77,12 +73,6 @@ void AssetMap<Asset>::AddContent(const std::string& file, int ID)
 
   //Insert
   mMap[ID] = std::move(tempAsset);
-}
-
-template <class Asset>
-Asset& AssetMap<Asset>::Get(int pos)
-{
-  return *mMap[pos];
 }
 
 template <class Asset>
