@@ -1,0 +1,3 @@
+AssetManager class 
+Used to handle loading and retrieving of assets from std::map.
+Singleton class so that loading can be handled globally.
