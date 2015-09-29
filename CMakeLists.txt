@@ -4,7 +4,7 @@ Project(SFML_Game)
 
 #C++ flags
 if(UNIX)
-  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++11")
+  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++11 -g")
 endif()
 
 #Game_Definitions
@@ -28,9 +28,9 @@ Set(Game_Include_Dir ${SFML_Include} ${Boost_Include})
 
 #Libraries
 #SFML
-Set(SFML_Graphics ${SFML_Dir}/lib/SFML-2.2.0/libsfml-graphics.so)
-Set(SFML_Window ${SFML_Dir}/lib/SFML-2.2.0/libsfml-window.so)
-Set(SFML_System ${SFML_Dir}/lib/SFML-2.2.0/libsfml-system.so)
+Set(SFML_Graphics ${SFML_Dir}/lib/libsfml-graphics.so)
+Set(SFML_Window ${SFML_Dir}/lib/libsfml-window.so)
+Set(SFML_System ${SFML_Dir}/lib/libsfml-system.so)
 #Boost
 Set(Boost_Filesystem /home/nick/Projects/boost_1_58_0/stage/lib/libboost_filesystem.so)
 Set(Boost_System /home/nick/Projects/boost_1_58_0/stage/lib/libboost_system.so)
