@@ -14,5 +14,5 @@ void AssetManager::LoadContent()
 
 sf::Texture& AssetManager::GetTexture(int pos)
 {
-  return mTextureMap.Get(pos);
+  return mTextureMap[pos];
 }

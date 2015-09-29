@@ -23,6 +23,9 @@ class AssetMap
     //Getter operations
     Asset& Get(int);
     const Asset& Get(int) const;
+
+    //Overloading subscript operator
+    Asset& operator[] (const int);
   private: //Member functions
     void AddContent(const std::string&, int);
   private:
@@ -78,6 +81,12 @@ void AssetMap<Asset>::AddContent(const std::string& file, int ID)
 
 template <class Asset>
 Asset& AssetMap<Asset>::Get(int pos)
+{
+  return *mMap[pos];
+}
+
+template <class Asset>
+Asset& AssetMap<Asset>::operator[] (const int pos)
 {
   return *mMap[pos];
 }
