@@ -9,7 +9,7 @@ AssetManager& AssetManager::Instance()
 
 void AssetManager::LoadContent()
 {
-  mTextureMap.LoadContent("/home/nick/Projects/SFML_Game/build/Data/Sprites", ".png");
+  mTextureMap.LoadContent("/data/sprites", ".png");
 }
 
 sf::Texture& AssetManager::GetTexture(int pos)
