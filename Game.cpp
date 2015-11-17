@@ -44,12 +44,12 @@ void Game::ProcessEvents()
 
 void Game::Update(sf::Time deltaTime)
 {
-  GameStateMachine.Update(deltaTime);
+  mStateMachine.Update(deltaTime);
 }
 
 void Game::Draw(sf::RenderWindow& window)
 {
   mWindow.clear();
-  GameStateMachine.Draw(window);
+  mStateMachine.Draw(window);
   mWindow.display();
 }

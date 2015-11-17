@@ -7,16 +7,18 @@
 
 class Game
 {
-  public: //Public member functions
+  public:
     Game();
 
     //Run the game
     void Run();
-  private: //Private member functions
+
+  private:
     void ProcessEvents();
     void Update(sf::Time);
     void Draw(sf::RenderWindow&);
-  private: //Private member variables
+
+  private:
     sf::RenderWindow mWindow;
     const sf::Time mTimePerFrame;
     bool mIsPaused;

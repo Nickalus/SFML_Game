@@ -40,14 +40,20 @@ Set(Game_Libraries ${SFML_Graphics} ${SFML_Window} ${SFML_System} ${Boost_Filesy
 
 # Sources
 SET(GAME_SOURCES
-    AssetManagerMain.cpp
+    Main.cpp
     AssetManager.cpp
+    Game.cpp
+    GameStateMachine.cpp
+    GameState.cpp
    )
 
 SET(GAME_HEADERS
     AssetManager.hpp
     AssetMap.hpp
-   )
+    Game.hpp
+    GameStateMachine.hpp
+    GameState.hpp
+    )
 
 Include_Directories(${Game_Include_Dir})
 Link_Directories(${Game_Library_Dir})

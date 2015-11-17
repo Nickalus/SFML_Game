@@ -8,15 +8,15 @@ GameStateMachine::~GameStateMachine()
 {
 }
 
-void GameStateMachine::Update()
+void GameStateMachine::Update(sf::Time time)
 {
   if(!mGameStates.empty())
   {
-    mGameStates.back()->Update();
+    mGameStates.back()->Update(time);
   }
 }
 
-void GameStateMachine::Draw()
+void GameStateMachine::Draw(sf::RenderWindow& window)
 {
   if(!mGameStates.empty())
   {
@@ -27,7 +27,7 @@ void GameStateMachine::Draw()
 bool GameStateMachine::Push(GameState * state)
 {
   mGameStates.push(state);
-  
+
   mGameStates.back()->Init();
 }
 
@@ -49,7 +49,7 @@ bool GameStateMachine::Change(GameState * state)
 
   //initialise it
   state->Init();
-    
+
   //push back our new state
   mGameStates.push(state);
 }
@@ -61,6 +61,6 @@ void GameStateMachine::Pop()
     mGameStates.back()->Exit();
     mGameStates.pop();
   }
-    
+
   mGameStates.back()->Resume();
 }

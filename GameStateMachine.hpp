@@ -1,20 +1,20 @@
 /*
  * State machine that handles the changing and adding of new states
  * */
- 
+
 #include <queue>
 
-#include "gamestate.hpp"
+#include "GameState.hpp"
 
 class GameStateMachine
 {
   public:
     GameStateMachine();
     ~GameStateMachine();
-    
-    void Update();
-    void Draw();
-    
+
+    void Update(sf::Time);
+    void Draw(sf::RenderWindow&);
+
     bool Push(GameState *);
     bool Change(GameState *);
     void Pop();
