@@ -12,7 +12,7 @@ void GameStateMachine::Update(sf::Time time)
 {
   if(!mGameStates.empty())
   {
-    mGameStates.back()->Update(time);
+    mGameStates.top()->Update(time);
   }
 }
 
@@ -20,7 +20,7 @@ void GameStateMachine::Draw(sf::RenderWindow& window)
 {
   if(!mGameStates.empty())
   {
-    mGameStates.back()->Draw();
+    mGameStates.top()->Draw(window);
   }
 }
 
@@ -28,21 +28,21 @@ bool GameStateMachine::Push(GameState * state)
 {
   mGameStates.push(state);
 
-  mGameStates.back()->Init();
+  mGameStates.top()->Init();
 }
 
 bool GameStateMachine::Change(GameState * state)
 {
   if(!mGameStates.empty())
   {
-    if(mGameStates.back()->getStateID() == state->getStateID())
+    if(mGameStates.top()->getStateID() == state->getStateID())
     {
       return; //do nothing
     }
     else
     {
       //Exit the state and pop it off the stack
-      mGameStates.back()->Exit();
+      mGameStates.top()->Exit();
       mGameStates.pop();
     }
   }

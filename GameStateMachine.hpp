@@ -2,7 +2,7 @@
  * State machine that handles the changing and adding of new states
  * */
 
-#include <queue>
+#include <stack>
 
 #include "GameState.hpp"
 
@@ -19,5 +19,5 @@ class GameStateMachine
     bool Change(GameState *);
     void Pop();
   private:
-    std::queue<GameState*> mGameStates;
+    std::stack<GameState*> mGameStates;
 };
