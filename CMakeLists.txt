@@ -42,17 +42,17 @@ Set(Game_Libraries ${SFML_Graphics} ${SFML_Window} ${SFML_System} ${Boost_Filesy
 SET(GAME_SOURCES
     Main.cpp
     AssetManager.cpp
+    Entity.cpp
     Game.cpp
-    GameStateMachine.cpp
-    GameState.cpp
+    SceneNode.cpp
    )
 
 SET(GAME_HEADERS
     AssetManager.hpp
     AssetMap.hpp
+    Entity.hpp
     Game.hpp
-    GameStateMachine.hpp
-    GameState.hpp
+    SceneNode.hpp
     )
 
 Include_Directories(${Game_Include_Dir})

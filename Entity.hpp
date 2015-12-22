@@ -1,6 +1,8 @@
 #ifndef ENTITY_HPP
 #define ENTITY_HPP
 
+#include <SFML/System/Vector2.hpp>
+
 class Entity
 {
   public:

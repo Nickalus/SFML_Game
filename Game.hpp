@@ -22,7 +22,7 @@ class Game
     sf::RenderWindow mWindow;
     const sf::Time mTimePerFrame;
     bool mIsPaused;
-    GameStateMachine mStateMachine;
+    //GameStateMachine mStateMachine;
 };
 
 #endif

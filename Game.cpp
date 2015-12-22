@@ -1,8 +1,8 @@
 #include "Game.hpp"
 
 Game::Game() : mWindow(sf::VideoMode(640, 480), "SFML Game"),
-               mIsPaused(false),
-               mTimePerFrame(sf::seconds(1.f / 60.f))
+               mTimePerFrame(sf::seconds(1.f / 60.f)),
+               mIsPaused(false)
 {
 }
 
@@ -44,12 +44,12 @@ void Game::ProcessEvents()
 
 void Game::Update(sf::Time deltaTime)
 {
-  mStateMachine.Update(deltaTime);
+  //mStateMachine.Update(deltaTime);
 }
 
 void Game::Draw(sf::RenderWindow& window)
 {
   mWindow.clear();
-  mStateMachine.Draw(window);
+  //mStateMachine.Draw(window);
   mWindow.display();
 }
