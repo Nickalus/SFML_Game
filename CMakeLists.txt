@@ -45,6 +45,7 @@ SET(GAME_SOURCES
     Entity.cpp
     Game.cpp
     SceneNode.cpp
+    World.cpp
    )
 
 SET(GAME_HEADERS
@@ -53,6 +54,7 @@ SET(GAME_HEADERS
     Entity.hpp
     Game.hpp
     SceneNode.hpp
+    World.hpp
     )
 
 Include_Directories(${Game_Include_Dir})

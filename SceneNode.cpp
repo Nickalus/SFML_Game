@@ -18,12 +18,12 @@ SceneNode::Ptr SceneNode::DetachChild(const SceneNode& node)
 {
   auto found = std::find_if(mChildren.begin(), mChildren.end(),
                             [&](Ptr& p){return p.get() == &node;});
-    assert(found != mChildren.end());
+  assert(found != mChildren.end());
 
-      Ptr result = std::move(*found);
-      result->mParent = nullptr;
-      mChildren.erase(found);
-      return result;
+  Ptr result = std::move(*found);
+  result->mParent = nullptr;
+  mChildren.erase(found);
+  return result;
 }
 
 void SceneNode::Update(sf::Time dt)
