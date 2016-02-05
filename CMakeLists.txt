@@ -45,6 +45,7 @@ SET(GAME_SOURCES
     Entity.cpp
     Game.cpp
     SceneNode.cpp
+    SpriteNode.cpp
     World.cpp
    )
 
@@ -54,6 +55,7 @@ SET(GAME_HEADERS
     Entity.hpp
     Game.hpp
     SceneNode.hpp
+    SpriteNode.hpp
     World.hpp
     )
 
