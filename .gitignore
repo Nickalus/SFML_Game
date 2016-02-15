@@ -29,3 +29,6 @@
 
 # Folders 
 /build
+
+#.user files
+*.user
