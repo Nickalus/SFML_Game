@@ -3,6 +3,7 @@
 
 #include "SceneNode.hpp"
 #include "SpriteNode.hpp"
+#include "Creature.hpp"
 
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/Graphics/View.hpp>
@@ -21,28 +22,25 @@ class World : private sf::NonCopyable
 
   private:
     void LoadConfig();
-    void LoadTextures();
     void BuildScene();
 
   private:
     enum Layer
     {
       Background,
-      Play,
       Foreground,
       LayerCount
     };
 
-
   private:
     sf::RenderWindow & mWindow;
     sf::View mWorldView;
-    TextureHolder mTextures;
     SceneNode mSceneGraph;
     std::array<SceneNode *, LayerCount> mSceneLayers;
     sf::FloatRect mWorldBounds;
     sf::Vector2f mSpawnPosition;
     float mScrollSpeed;
+    Creature * mPlayerCreature;
 };
 
 #endif

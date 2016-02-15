@@ -19,9 +19,12 @@ Elseif(WIN32)
   Set(SFML_Dir C:/SFML-2.2.0)
 Endif()
 
+#Dir where I want the executable
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/build)
+
 #SFML
 Set(SFML_Include ${SFML_Dir}/include)
-Set(Boost_Include /home/nick/Projects/boost_1_58_0/boost)
+Set(Boost_Include ${Boost_Dir}/include )
 
 #Game_Include_Dir
 Set(Game_Include_Dir ${SFML_Include} ${Boost_Include})
@@ -32,8 +35,8 @@ Set(SFML_Graphics ${SFML_Dir}/lib/libsfml-graphics.so)
 Set(SFML_Window ${SFML_Dir}/lib/libsfml-window.so)
 Set(SFML_System ${SFML_Dir}/lib/libsfml-system.so)
 #Boost
-Set(Boost_Filesystem /home/nick/Projects/boost_1_58_0/stage/lib/libboost_filesystem.so)
-Set(Boost_System /home/nick/Projects/boost_1_58_0/stage/lib/libboost_system.so)
+Set(Boost_Filesystem ${Boost_Dir}/lib/libboost_filesystem.so)
+Set(Boost_System ${Boost_Dir}/lib/libboost_system.so)
 
 #Game_Libraries/usr/local/lib/
 Set(Game_Libraries ${SFML_Graphics} ${SFML_Window} ${SFML_System} ${Boost_Filesystem} ${Boost_System})
@@ -47,6 +50,7 @@ SET(GAME_SOURCES
     SceneNode.cpp
     SpriteNode.cpp
     World.cpp
+    Creature.cpp
    )
 
 SET(GAME_HEADERS
@@ -57,6 +61,7 @@ SET(GAME_HEADERS
     SceneNode.hpp
     SpriteNode.hpp
     World.hpp
+    Creature.hpp
     )
 
 Include_Directories(${Game_Include_Dir})
