@@ -1,4 +1,5 @@
 #include "World.hpp"
+#include "TileNode.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 
@@ -23,6 +24,8 @@ World::World(sf::RenderWindow& window)
 void World::Update(sf::Time dt)
 {
   //Do game stuff
+  //Move camera in the x-direction
+  mWorldView.move(mScrollSpeed * dt.asSeconds(), 0.f);
 
   // Apply movements
   mSceneGraph.Update(dt);
@@ -45,19 +48,20 @@ void World::BuildScene()
     mSceneGraph.AttachChild(std::move(layer));
   }
 
-  // Prepare the tiled background
-  sf::IntRect textureRect(mWorldBounds);
-  texture.setRepeated(true);
-
-  // Add the background sprite to the scene
-  std::unique_ptr<SpriteNode> backgroundSprite(new SpriteNode(texture, textureRect));
-  backgroundSprite->setPosition(mWorldBounds.left, mWorldBounds.top);
-  mSceneLayers[Background]->AttachChild(std::move(backgroundSprite));
+  // Add the background to the scene
+  std::unique_ptr<TileNode> background(new TileNode);
+  background->setPosition(mWorldBounds.left, mWorldBounds.top);
+  mSceneLayers[Background]->AttachChild(std::move(background));
 
   // Add player
-  std::unique_ptr<Creature> leader(new Aircraft(Aircraft::Eagle, mTextures));
+  std::unique_ptr<Creature> leader(new Creature);
   mPlayerCreature = leader.get();
   mPlayerCreature->setPosition(mSpawnPosition);
   mPlayerCreature->SetVelocity(sf::Vector2f(40.f, mScrollSpeed));
   mSceneLayers[Foreground]->AttachChild(std::move(leader));
+}
+
+void World::LoadConfig()
+{
+
 }

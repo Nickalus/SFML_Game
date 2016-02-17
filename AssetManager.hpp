@@ -18,6 +18,9 @@ class AssetManager
     //Load all assets
     void LoadContent();
 
+    //Load specific assets
+    void LoadContent(std::vector<int>);
+
     //Getter functions
     sf::Texture& GetTexture(int);
     sf::Font& GetFont(int);
