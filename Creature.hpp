@@ -3,7 +3,7 @@
 
 #include "Entity.hpp"
 
-class Creature
+class Creature : public Entity
 {
   public:
     Creature();

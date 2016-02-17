@@ -58,6 +58,6 @@ void World::BuildScene()
   std::unique_ptr<Creature> leader(new Aircraft(Aircraft::Eagle, mTextures));
   mPlayerCreature = leader.get();
   mPlayerCreature->setPosition(mSpawnPosition);
-  mPlayerCreature->SetVelocity(40.f, mScrollSpeed);
+  mPlayerCreature->SetVelocity(sf::Vector2f(40.f, mScrollSpeed));
   mSceneLayers[Foreground]->AttachChild(std::move(leader));
 }
