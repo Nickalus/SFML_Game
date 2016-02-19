@@ -3,7 +3,7 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 
 
-TileNode::TileNode()
+TileNode::TileNode(sf::Vector2i tileSize)
 {
 }
 

@@ -52,6 +52,7 @@ SET(GAME_SOURCES
     World.cpp
     Creature.cpp
     TileNode.cpp
+    Layer.cpp
    )
 
 SET(GAME_HEADERS
@@ -64,6 +65,7 @@ SET(GAME_HEADERS
     World.hpp
     Creature.hpp
     TileNode.hpp
+    Layer.hpp
     )
 
 Include_Directories(${Game_Include_Dir})

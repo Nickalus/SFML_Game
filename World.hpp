@@ -3,6 +3,7 @@
 
 #include "SceneNode.hpp"
 #include "SpriteNode.hpp"
+#include "TileNode.hpp"
 #include "Creature.hpp"
 
 #include <SFML/System/NonCopyable.hpp>
@@ -41,6 +42,9 @@ class World : private sf::NonCopyable
     sf::Vector2f mSpawnPosition;
     float mScrollSpeed;
     Creature * mPlayerCreature;
+
+    //Layers
+    std::unique_ptr<TileNode> mBackground;
 };
 
 #endif

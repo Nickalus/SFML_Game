@@ -13,6 +13,7 @@ World::World(sf::RenderWindow& window)
 , mSpawnPosition(mWorldView.getSize().x / 2.f, mWorldBounds.height - mWorldView.getSize().y / 2.f)
 , mScrollSpeed(-50.f)
 , mPlayerCreature(nullptr)
+, mBackground(new TileNode)
 {
   LoadConfig();
   BuildScene();
@@ -49,7 +50,6 @@ void World::BuildScene()
   }
 
   // Add the background to the scene
-  std::unique_ptr<TileNode> background(new TileNode);
   background->setPosition(mWorldBounds.left, mWorldBounds.top);
   mSceneLayers[Background]->AttachChild(std::move(background));
 
